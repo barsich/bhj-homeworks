@@ -10,9 +10,6 @@ btn[0].onclick = function () {
   modalSuccess.className = 'modal modal_active';
 };
 
-modalClose.forEach((item) => {
-  item.onclick = function () {
-    modalMain.className = 'modal';
-    modalSuccess.className = 'modal';
-  };
+modalClose.forEach(item => item.onclick = function() {
+  this.closest('.modal').className = 'modal';
 });
