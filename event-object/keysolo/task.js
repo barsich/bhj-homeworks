@@ -24,6 +24,17 @@ class Game {
       В случае правильного ввода слова вызываем this.success()
       При неправильном вводе символа - this.fail();
      */
+
+    document.addEventListener('keyup', event => {
+      if (event.key.length === 1) { //для исключения Shift/Control/Alt/etc.
+        if (this.currentSymbol.textContent.toLowerCase() === event.key.toLowerCase()) {
+          this.success();
+        } else {
+          //clearInterval(countdown);
+          this.fail();
+        }
+      }
+    });
   }
 
   success() {
@@ -48,25 +59,40 @@ class Game {
     this.setNewWord();
   }
 
+  setTimer() {
+    const wordLength = document.querySelectorAll('.symbol').length;
+    const timer = document.querySelector('.timer');
+    timer.textContent = wordLength;
+    let countdown = setInterval(() => {
+      timer.textContent--;
+      if (+timer.textContent === 0) {
+        clearInterval(countdown);
+        this.fail();
+      }
+    }, 1000)
+  }
+
   setNewWord() {
     const word = this.getWord();
 
     this.renderWord(word);
+    this.setTimer();
   }
 
   getWord() {
     const words = [
-        'bob',
-        'awesome',
-        'netology',
-        'hello',
-        'kitty',
-        'rock',
-        'youtube',
-        'popcorn',
-        'cinema',
-        'love',
-        'javascript'
+        // 'bob',
+        // 'awesome',
+        // 'netology',
+        // 'hello',
+        // 'kitty',
+        // 'rock',
+        // 'youtube',
+        // 'popcorn',
+        // 'cinema',
+        // 'love',
+        // 'javascript'
+        'я люблю kitkat'
       ],
       index = Math.floor(Math.random() * words.length);
 
