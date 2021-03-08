@@ -30,7 +30,7 @@ class Game {
         if (this.currentSymbol.textContent.toLowerCase() === event.key.toLowerCase()) {
           this.success();
         } else {
-          this.stopTimer(this.countdown);
+          this.resetTimer(this.countdown);
           this.fail();
         }
       }
@@ -66,13 +66,13 @@ class Game {
     this.countdown = setInterval(() => {
       timer.textContent--;
       if (+timer.textContent === 0) {
-        this.stopTimer(this.countdown);
+        this.resetTimer(this.countdown);
         this.fail();
       }
     }, 1000)
   }
 
-  stopTimer() {
+  resetTimer() {
     clearInterval(this.countdown);
   }
 
