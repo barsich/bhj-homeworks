@@ -30,7 +30,7 @@ class Game {
         if (this.currentSymbol.textContent.toLowerCase() === event.key.toLowerCase()) {
           this.success();
         } else {
-          //clearInterval(countdown);
+          this.stopTimer(this.countdown);
           this.fail();
         }
       }
@@ -63,13 +63,17 @@ class Game {
     const wordLength = document.querySelectorAll('.symbol').length;
     const timer = document.querySelector('.timer');
     timer.textContent = wordLength;
-    let countdown = setInterval(() => {
+    this.countdown = setInterval(() => {
       timer.textContent--;
       if (+timer.textContent === 0) {
-        clearInterval(countdown);
+        this.stopTimer(this.countdown);
         this.fail();
       }
     }, 1000)
+  }
+
+  stopTimer() {
+    clearInterval(this.countdown);
   }
 
   setNewWord() {
