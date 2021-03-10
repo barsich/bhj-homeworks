@@ -30,7 +30,6 @@ class Game {
         if (this.currentSymbol.textContent.toLowerCase() === event.key.toLowerCase()) {
           this.success();
         } else {
-          this.resetTimer(this.countdown);
           this.fail();
         }
       }
@@ -80,6 +79,7 @@ class Game {
     const word = this.getWord();
 
     this.renderWord(word);
+    this.resetTimer(this.countdown);
     this.setTimer();
   }
 
